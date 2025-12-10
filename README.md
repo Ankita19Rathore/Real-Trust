@@ -3,7 +3,7 @@ Real Trust – Real Estate Consultation Website
 Real Trust is a simple and clean full-stack project built to manage real-estate consultations, client testimonials, and project listings.
 The website includes a public frontend for users and a dedicated admin panel for managing all content.
 
-Features
+> Features
 Website (Frontend)
 
 Modern real-estate themed UI
@@ -16,11 +16,11 @@ Hardcoded Projects & Happy Clients sections
 
 Smooth navigation between sections
 
-Admin Panel
+> Admin Panel
 
 Secure login
 
-View:
+> View:
 
 Projects
 
@@ -36,7 +36,7 @@ Delete unwanted entries
 
 Dashboard with overview stats
 
-Backend
+> Backend
 
 Node.js + Express
 
@@ -46,7 +46,7 @@ JWT-based admin authentication
 
 Multer for image uploads
 
- Tech Used
+> Tech Used
 
 Frontend: HTML, CSS, JavaScript
 
