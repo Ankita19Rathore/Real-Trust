@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real Trust | Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --primary: #0a4b8f;
+      --accent: #ff6b2c;
+      --dark-blue: #1b3152;
+      --light-bg: #f8fbff;
+      --border: #e2e7f5;
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fb;
+      color: #222;
+    }
+
+    /* Navbar */
+    .navbar{
+      width: 100%;
+      padding: 16px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-left{
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+    }
+    .nav-left span{ color: var(--primary); }
+    .nav-left img{ width: 34px; }
+
+    /* Sidebar */
+    .page { display: flex; min-height: calc(100vh - 60px); }
+
+    .sidebar {
+      width: 220px;
+      background: #fff;
+      border-right: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .sidebar h3 {
+      font-size: 14px;
+      padding: 0 20px;
+      margin-bottom: 10px;
+      color: #777;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .sidebar-menu {
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+    .sidebar-menu li{
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #444;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sidebar-menu li.active{
+      background: #e3edff;
+      border-left: 4px solid var(--primary);
+      padding-left: 16px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .badge {
+      background: rgba(10,75,143,0.05);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: var(--primary);
+    }
+
+    /* Main content */
+    .main{ flex:1; padding:24px 40px; }
+    .section{ display:none; }
+    .section.active{ display:block; }
+
+    .section-title{
+      font-size:22px;
+      color:var(--primary);
+      margin-bottom:6px;
+    }
+    .section-subtitle{
+      font-size:13px;
+      color:#777;
+      margin-bottom:20px;
+    }
+
+    /* Dashboard cards row */
+    .cards-row{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:24px;
+    }
+    .card{
+      background:#fff;
+      border-radius:10px;
+      padding:16px 18px;
+      border:1px solid var(--border);
+      box-shadow:0 3px 12px rgba(0,0,0,0.04);
+      flex:1;
+      min-width:220px;
+    }
+    .card h4{ margin:0 0 4px 0; font-size:14px; color:#555; }
+    .card-value{
+      font-size:20px;
+      font-weight:bold;
+      color:#333;
+      margin-bottom:4px;
+    }
+    small{ font-size:11px; color:#888; }
+
+    /* Forms */
+    .form-title{
+      font-size:16px; font-weight:600; margin-bottom:10px;
+    }
+    label{ display:block; margin-top:8px; margin-bottom:3px; }
+    input, textarea{
+      width:100%; padding:9px 10px;
+      border-radius:5px;
+      border:1px solid var(--border);
+      font-size:14px;
+    }
+    textarea{ resize:vertical; min-height:60px; }
+
+    .btn-primary{
+      padding:9px 18px;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      margin-top:10px;
+      font-weight:bold;
+    }
+
+    .btn-danger{
+      background:#e74c3c;
+      color:white;
+      padding:6px 10px;
+      border:none;
+      border-radius:4px;
+      cursor:pointer;
+    }
+
+    .list-container{
+      margin-top:16px;
+      border:1px solid var(--border);
+      background:white;
+      border-radius:10px;
+      max-height:360px;
+      overflow-y:auto;
+    }
+    .list-item{
+      padding:10px 14px;
+      border-bottom:1px solid #eef1fb;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      font-size:13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-left">
+      <img src="https://img.icons8.com/?size=512&id=59281&format=png">
+      <span>&nbsp;Real Trust Admin</span>
+    </div>
+    <div class="nav-right">
+      <span id="adminEmail"></span>
+      <button class="btn-outline" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="auth-section">
+    <h2>Admin Login</h2>
+    <p>Sign in to manage projects, clients, contacts and subscribers.</p>
+
+    <input id="email" type="email" value="admin@realtrust.com">
+    <input id="password" type="password" value="Admin@123">
+
+    <button class="btn-primary" id="loginBtn">Login</button>
+    <div id="authMsg"></div>
+  </div>
+
+  <!-- APP -->
+  <div id="app" class="page hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h3>Management</h3>
+      <ul class="sidebar-menu">
+        <li data-target="dashboard" class="active">Dashboard</li>
+        <li data-target="projects">Projects <span class="badge" id="badgeProjects">0</span></li>
+        <li data-target="clients">Clients <span class="badge" id="badgeClients">0</span></li>
+        <li data-target="contacts">Contacts</li>
+        <li data-target="subs">Subscribers</li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="section active">
+        <div class="section-title">Dashboard</div>
+        <div class="section-subtitle">Quick overview of activity and shortcuts.</div>
+
+        <div class="cards-row">
+
+          <div class="card">
+            <h4>Total Projects</h4>
+            <div class="card-value" id="statProjects">0</div>
+            <small>Shown on main website</small>
+          </div>
+
+          <div class="card">
+            <h4>Total Clients</h4>
+            <div class="card-value" id="statClients">0</div>
+            <small>Happy clients testimonials</small>
+          </div>
+
+          <div class="card">
+            <h4>Contacts</h4>
+            <div class="card-value" id="statContacts">0</div>
+            <small>Homepage enquiry form</small>
+          </div>
+
+          <div class="card">
+            <h4>Subscribers</h4>
+            <div class="card-value" id="statSubs">0</div>
+            <small>Footer newsletter</small>
+          </div>
+
+        </div>
+
+        <div class="cards-row">
+
+          <!-- ADD PROJECT -->
+          <div class="card">
+            <div class="form-title">Add New Project</div>
+            <form id="projectForm">
+              <label>Project Name</label>
+              <input type="text" name="name">
+
+              <label>Description</label>
+              <textarea name="description"></textarea>
+
+              <label>Image</label>
+              <input type="file" name="image" accept="image/*">
+
+              <button class="btn-primary">Save Project</button>
+            </form>
+          </div>
+
+          <!-- ADD CLIENT -->
+          <div class="card">
+            <div class="form-title">Add New Client</div>
+            <form id="clientForm">
+              <label>Client Name</label>
+              <input type="text" name="name">
+
+              <label>Designation</label>
+              <input type="text" name="designation">
+
+              <label>Description</label>
+              <textarea name="description"></textarea>
+
+              <label>Image</label>
+              <input type="file" name="image" accept="image/*">
+
+              <button class="btn-primary">Save Client</button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="section-title">Projects</div>
+        <div class="list-container" id="projectsList"></div>
+      </section>
+
+      <!-- CLIENTS -->
+      <section id="clients" class="section">
+        <div class="section-title">Clients</div>
+        <div class="list-container" id="clientsList"></div>
+      </section>
+
+      <!-- CONTACTS -->
+      <section id="contacts" class="section">
+        <div class="section-title">Contact Responses</div>
+        <div class="list-container" id="contactsList"></div>
+      </section>
+
+      <!-- SUBSCRIBERS -->
+      <section id="subs" class="section">
+        <div class="section-title">Subscribers</div>
+        <div class="list-container" id="subsList"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

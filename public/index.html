@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Trust</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar{
+            width: 100%;
+            padding: 20px 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+        }
+        .nav-left{
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-left span{
+            color: #0a4b8f;
+        }
+
+        .nav-menu{
+            display: flex;
+            gap: 35px;
+            font-size: 16px;
+        }
+        .nav-menu a{
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        .contact-btn{
+            padding: 12px 25px;
+            background-color: #ff6b2c;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* HERO SECTION */
+        .hero{
+            width: 100%;
+            height: 520px;
+            position: relative;
+        }
+
+        .hero img{
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+        }
+
+        .hero::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.35); 
+            z-index: 1;
+        }
+
+        .hero-text{
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            color: white;
+            font-size: 42px;
+            font-weight: bold;
+            width: 400px;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        .consult-box{
+            position: absolute;
+            top: 20%;
+            right: 7%;
+            background-color: #1b3152;
+            padding: 30px;
+            width: 300px;
+            border-radius: 8px;
+            color: white;
+            z-index: 2;
+        }
+
+        .consult-box h3{
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .consult-box input{
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+        .quote-btn{
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6b2c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* --------------------- NOT YOUR AVERAGE REALTOR --------------------- */
+        .average-realtor {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 70px 120px;
+            align-items: center;
+            background: #f9fbfe;
+        }
+
+        .realtor-left {
+            width: 45%;
+        }
+
+        .realtor-left h2 {
+            font-size: 32px;
+            color: #0a4b8f;
+            margin-bottom: 12px;
+        }
+
+        .realtor-left p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .realtor-right {
+            width: 55%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .circle {
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(190, 209, 255, 0.4);
+            box-shadow: 0 0 18px rgba(0, 112, 255, 0.15);
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .big {
+            width: 260px;
+            height: 260px;
+        }
+
+        .realtor-right-small-group {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .small {
+            width: 150px;
+            height: 150px;
+        }
+
+        /* --------------------- WHY CHOOSE US --------------------- */
+        .why-choose {
+            padding: 60px 0;
+            text-align: center;
+            background: white;
+        }
+
+        .why-choose h2 {
+            font-size: 30px;
+            color: #0a4b8f;
+            margin-bottom: 8px;
+        }
+
+        .choose-underline {
+            width: 90px;
+            height: 4px;
+            background: #0a4b8f;
+            border-radius: 10px;
+            margin: 0 auto 40px auto;
+        }
+
+        .choose-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+        }
+
+        .choose-card {
+            width: 260px;
+            text-align: center;
+            position: relative;
+        }
+
+        .choose-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 132, 255, 0.08);
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .choose-icon img {
+            width: 32px;
+        }
+
+        .choose-card h3 {
+            font-size: 18px;
+            color: #0a4b8f;
+            margin-bottom: 10px;
+        }
+
+        .choose-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .choose-arrow {
+            position: absolute;
+            right: -28px;
+            bottom: 8px;
+            cursor: pointer;
+        }
+
+        /* ---------------------- ABOUT US SECTION ---------------------- */
+        .about-us-section {
+            text-align: center;
+            padding: 60px 0;
+            background: white;
+        }
+
+        .about-us-section h2 {
+            font-size: 30px;
+            color: #0a4b8f;
+            margin-bottom: 10px;
+        }
+
+        .about-underline {
+            width: 90px;
+            height: 4px;
+            background: #0a4b8f;
+            border-radius: 10px;
+            margin: 0 auto 30px auto;
+        }
+
+        .about-us-section p {
+            font-size: 15.5px;
+            color: #555;
+            line-height: 1.6;
+            width: 60%;
+            margin: auto;
+            margin-bottom: 25px;
+        }
+
+        .about-btn {
+            padding: 10px 28px;
+            background: white;
+            border: 2px solid #0a4b8f;
+            border-radius: 4px;
+            color: #0a4b8f;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .about-btn:hover {
+            background: #0a4b8f;
+            color: white;
+            transition: 0.3s;
+        }
+
+        /* ---------------- OUR PROJECTS SECTION ---------------- */
+        .projects-section{
+            text-align: center;
+            padding: 60px 0;
+            background: #f8fbff;
+        }
+
+        .project-title{
+            font-size: 30px;
+            color: #0a4b8f;
+            margin-bottom: 10px;
+        }
+
+        .project-subtitle{
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .projects-container{
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .project-card{
+            width: 200px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover{
+            transform: translateY(-5px);
+        }
+
+        .project-card img{
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        /* ---------------- HAPPY CLIENTS SECTION ---------------- */
+        .happy-clients {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .clients-container {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            padding: 0 40px;
+        }
+
+        .client-card {
+            width: 220px;
+            background: #ffffff;
+            padding: 18px 16px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .client-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* ---------------- FOOTER TOP BANNER ---------------- */
+        .footer-banner {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            margin-top: 60px;
+        }
+
+        .footer-banner img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+        }
+
+        .banner-text h2 {
+            font-size: 24px;
+            line-height: 1.4;
+        }
+
+        .banner-text button {
+            margin-top: 15px;
+            padding: 10px 28px;
+            background: white;
+            color: #0a4b8f;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ---------------- BLUE FOOTER ---------------- */
+        .footer-blue {
+            background: #1c6ffb;
+            padding: 25px 0;
+        }
+
+        .footer-blue-content {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .footer-subscribe {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-subscribe span {
+            color: white;
+            font-size: 15px;
+        }
+
+        .footer-subscribe input {
+            padding: 10px 14px;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .footer-subscribe button {
+            padding: 10px 16px;
+            border: none;
+            background: white;
+            color: #0a4b8f;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* ---------------- MAIN FOOTER ---------------- */
+        .main-footer {
+            background: #121420;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 8%;
+        }
+
+        .main-footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer-logo span {
+            color: #ffffff;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 18px;
+        }
+
+        .social-icon {
+            width: 22px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="nav-left">
+            <img src="https://img.icons8.com/?size=512&id=59281&format=png" width="35">
+            <span>&nbsp;Real Trust</span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="#home">HOME</a>
+            <a href="#services">SERVICES</a>
+            <a href="#projects">ABOUT PROJECTS</a>
+            <a href="#testimonials">TESTIMONIALS</a>
+        </div>
+
+        <a class="contact-btn" href="#contact">CONTACT</a>
+    </div>
+
+
+    <!-- HERO SECTION -->
+    <div class="hero" id="home">
+        <img src="https://images.pexels.com/photos/5686105/pexels-photo-5686105.jpeg" alt="team">
+
+        <div class="hero-text">
+            Consultation,<br>
+            Design,<br>
+            & Marketing
+        </div>
+
+        <div class="consult-box">
+            <h3>Get a Free Consultation</h3>
+
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Enter Email Address">
+            <input type="text" placeholder="Mobile Number">
+            <input type="text" placeholder="Area/City">
+            
+            <button class="quote-btn">Get Quote Now</button>
+        </div>
+    </div>
+
+    <!-- NOT YOUR AVERAGE REALTOR SECTION -->
+<section class="average-realtor">
+
+    <div class="realtor-left">
+        <h2>Not Your Average Realtor</h2>
+        <p>
+            Most realtors are only focused on getting a property sold, and not <br>
+            about making design and marketing improvements that get <br>
+            homeowners top dollar on their homes.
+        </p>
+    </div>
+
+   <div class="realtor-right">
+
+    <div class="circle big">
+        <img src="https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg">
+    </div>
+
+    <div class="realtor-right-small-group">
+        <div class="circle small">
+            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg">
+        </div>
+
+        <div class="circle small">
+            <img src="https://images.pexels.com/photos/3182761/pexels-photo-3182761.jpeg">
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+<!-- WHY CHOOSE US SECTION -->
+<section class="why-choose" id="services">
+
+    <h2>Why Choose Us?</h2>
+    <div class="choose-underline"></div>
+
+    <div class="choose-container">
+
+        <!-- Card 1 -->
+        <div class="choose-card">
+            <div class="choose-icon">
+                <img src="https://img.icons8.com/ios-filled/50/0a4b8f/home.png">
+            </div>
+            <h3>Potential ROI</h3>
+            <p>
+                Whether you're looking to buy a fixer-upper or renovate your current home for sale,
+                we’ll help you strategize for the ultimate ROI.
+            </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="choose-card">
+            <div class="choose-icon">
+                <img src="https://img.icons8.com/ios-filled/50/0a4b8f/paint-brush.png">
+            </div>
+            <h3>Design</h3>
+            <p>
+                Our in-house design team gives you the perfect guidance through your design options
+                and recommended contractor list to complete the home upgrades.
+            </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="choose-card arrow-card">
+            <div class="choose-icon">
+                <img src="https://img.icons8.com/ios-filled/50/0a4b8f/money.png">
+            </div>
+            <h3>Marketing</h3>
+            <p>
+                Changing market trends, perfect timing, and a sophisticated digital marketing plan
+                accompany every listing to reach today's buyers.
+            </p>
+
+            <!-- Arrow Button -->
+            <div class="choose-arrow">
+                <img src="https://img.icons8.com/ios-glyphs/25/e67e22/chevron-right.png">
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT US SECTION -->
+<section class="about-us-section">
+
+    <h2>About Us</h2>
+    <div class="about-underline"></div>
+
+    <p>
+        Fifteen years of experience in real estate, excellent customer service and a <br>
+        commitment to work hard, listen and follow through. We provide quality service to <br>
+        build relationships with clients and, more importantly, maintain those relationships <br>
+        by communicating effectively.
+    </p>
+
+    <button class="about-btn">LEARN MORE</button>
+
+</section>
+
+    
+    <!-- OUR PROJECTS SECTION -->
+<section class="projects-section" id="projects">
+    <h2 class="project-title">Our Projects</h2>
+    <p class="project-subtitle">
+        We know what buyers are looking for and suggest projects that will bring <br>
+        clients top dollar for the sale of their homes.
+    </p>
+
+    <div class="projects-container">
+
+        <!-- CARD 1 -->
+        <div class="project-card">
+            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg" alt="">
+            <h3>Consultation</h3>
+            <p>Project review • workflow</p>
+            <button>READ MORE</button>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="project-card">
+            <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" alt="">
+            <h3>Design</h3>
+            <p>Project review • workflow</p>
+            <button>READ MORE</button>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="project-card">
+            <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" alt="">
+            <h3>Marketing & Design</h3>
+            <p>Project review • workflow</p>
+            <button>READ MORE</button>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="project-card">
+            <img src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg" alt="">
+            <h3>Consultation & Marketing</h3>
+            <p>Project review • workflow</p>
+            <button>READ MORE</button>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="project-card">
+            <img src="https://images.pexels.com/photos/3184416/pexels-photo-3184416.jpeg" alt="">
+            <h3>Consultation</h3>
+            <p>Project review • workflow</p>
+            <button>READ MORE</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- HAPPY CLIENTS SECTION -->
+<section class="happy-clients" id="testimonials">
+    <h2>Happy Clients</h2>
+
+    <div class="clients-container">
+
+        <!-- Client 1 -->
+        <div class="client-card">
+            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" class="client-img">
+            <p>
+                I was extremely happy with their consultation and design. They helped me understand
+                what buyers want and made my sale smooth and stress-free.
+            </p>
+            <h4>Raunak Smith</h4>
+            <span>CEO, Newyork</span>
+        </div>
+
+        <!-- Client 2 -->
+        <div class="client-card">
+            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" class="client-img">
+            <p>
+                Amazing experience working with the team! Their workflow and guidance were top-notch.
+                I recommend them to anyone looking to improve ROI.
+            </p>
+            <h4>Shreya Kayak</h4>
+            <span>Real Estate Agent</span>
+        </div>
+
+        <!-- Client 3 -->
+        <div class="client-card">
+            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" class="client-img">
+            <p>
+                Very professional and efficient. Their design and marketing strategy helped me sell my
+                property faster than expected.
+            </p>
+            <h4>John Lappos</h4>
+            <span>Sr. Sales Manager</span>
+        </div>
+
+        <!-- Client 4 -->
+        <div class="client-card">
+            <img src="https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg" class="client-img">
+            <p>
+                Great communication and extremely helpful. Their modern approach to marketing
+                really boosted our visibility and client engagement.
+            </p>
+            <h4>Marry Freeman</h4>
+            <span>Marketing Director</span>
+        </div>
+
+        <!-- Client 5 -->
+        <div class="client-card">
+            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" class="client-img">
+            <p>
+                Impressive work! They handled everything smoothly and professionally. Truly a
+                wonderful experience overall.
+            </p>
+            <h4>Lucy</h4>
+            <span>Sales, MyHome</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER TOP BANNER -->
+<section class="footer-banner">
+    <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" alt="footer-banner">
+
+    <div class="banner-text">
+        <h2>
+            Learn more about our listing process, as well as our <br>
+            additional staging and design work.
+        </h2>
+        <button>LEARN MORE</button>
+    </div>
+</section>
+
+
+<!-- BLUE FOOTER NAVIGATION + SUBSCRIBE -->
+<section class="footer-blue" id="contact">
+    <div class="footer-blue-content">
+
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-subscribe">
+            <span>Subscribe to</span>
+            <input type="email" placeholder="Enter Email Address">
+            <button>Subscribe</button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- MAIN FOOTER -->
+<footer class="main-footer">
+    <p>All Rights Reserved 2023</p>
+
+    <div class="footer-logo">
+        <img src="https://img.icons8.com/?size=512&id=59281&format=png" width="32">
+        <span>Real Trust</span>
+    </div>
+
+    <div class="footer-socials">
+        <img src="https://img.icons8.com/?size=50&id=118497&format=png" class="social-icon">
+        <img src="https://img.icons8.com/?size=50&id=118500&format=png" class="social-icon">
+        <img src="https://img.icons8.com/?size=50&id=118499&format=png" class="social-icon">
+        <img src="https://img.icons8.com/?size=50&id=118493&format=png" class="social-icon">
+    </div>
+</footer>
+
+<!-- JS FILE -->
+<script src="js/frontend.js"></script>
+
+</body>
+</html>
