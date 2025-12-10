@@ -10,10 +10,24 @@
             scroll-behavior: smooth;
         }
 
+
+
         body{
             margin: 0;
             font-family: Arial, sans-serif;
         }
+
+        html, body {
+  overflow-x: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+}
+
+
 
         /* NAVBAR */
         .navbar{
@@ -24,6 +38,35 @@
             align-items: center;
             background-color: white;
         }
+        /* .admin-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff6b2c;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        } */
+         .btn-group {
+    display: flex;
+    justify-content: flex-end; /* move buttons to right */
+    gap: 6px; /* very little spacing between buttons */
+}
+
+.contact-btn,
+.admin-btn {
+    padding: 12px 25px;
+    background-color: #ff6b2c;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* If you want admin button exactly same design */
+.admin-btn {
+    cursor: pointer;
+}
+
         .nav-left{
             display: flex;
             align-items: center;
@@ -44,14 +87,14 @@
             color: #333;
             font-weight: 500;
         }
-        .contact-btn{
+        /* .contact-btn{
             padding: 12px 25px;
             background-color: #ff6b2c;
             color: white;
             border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
-        }
+        } */
 
         /* HERO SECTION */
         .hero{
@@ -528,9 +571,14 @@
             <a href="#services">SERVICES</a>
             <a href="#projects">ABOUT PROJECTS</a>
             <a href="#testimonials">TESTIMONIALS</a>
+            <!-- <a class="admin-btn" href="http://localhost:5000/admin/">Go to Admin Page</a> -->
         </div>
 
-        <a class="contact-btn" href="#contact">CONTACT</a>
+        <div class="btn-group">
+            <a href="#contact" class="contact-btn">Contact</a>
+            <a href="http://localhost:5000/admin/" class="admin-btn">Admin</a>
+        </div>
+
     </div>
 
 
